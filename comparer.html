@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparer | PLANET X HUNTER</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #05091F;
+    color: white;
+}
+
+/* HEADER */
+
+header {
+    min-height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    gap: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #8545FF;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+button {
+    cursor: pointer;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+nav button {
+    padding: 13px 15px;
+    background: transparent;
+    border-radius: 15px;
+}
+
+nav button.active {
+    background: linear-gradient(90deg,#5515FF,#174BFF);
+    box-shadow: 0 0 15px #5515FF;
+}
+
+/* INTRODUCTION */
+
+.intro {
+    padding: 40px 5%;
+    background: linear-gradient(120deg,#15113D,#05091F);
+    border-bottom: 1px solid #252A58;
+}
+
+.intro h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.intro h1 span {
+    color: #A34CFF;
+}
+
+.intro p {
+    max-width: 750px;
+    line-height: 1.6;
+    color: #C8CCE8;
+    font-size: 16px;
+}
+
+/* COMPARAISON */
+
+.comparaison {
+    padding: 35px 4%;
+}
+
+.titre-section {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.description {
+    color: #B9C1E2;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.images-choix {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+}
+
+.zone-image {
+    background: #101733;
+    border: 1px solid #454B83;
+    border-radius: 17px;
+    padding: 20px;
+}
+
+.zone-image h3 {
+    margin-bottom: 15px;
+    font-size: 19px;
+    color: #B98AFF;
+}
+
+.apercu {
+    width: 100%;
+    height: 230px;
+    background: #080D24;
+    border: 1px dashed #575D94;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #ADB5D9;
+    text-align: center;
+    padding: 10px;
+}
+
+.apercu img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.information-image {
+    margin-top: 15px;
+    color: #B9C1E2;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.information-image strong {
+    color: white;
+}
+
+/* BOUTON COMPARER */
+
+.action-comparer {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.bouton-comparer {
+    padding: 16px 35px;
+    border-radius: 30px;
+    background: linear-gradient(90deg,#5515FF,#A020F0);
+    box-shadow: 0 0 18px rgba(112,40,255,0.5);
+    font-size: 16px;
+}
+
+.bouton-comparer:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.message {
+    text-align: center;
+    color: #BFC7E8;
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* RESULTATS */
+
+.resultats {
+    display: none;
+    padding: 30px 4%;
+    border-top: 1px solid #30365E;
+}
+
+.resultats h2 {
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.commandes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.commandes button {
+    padding: 12px 17px;
+    background: #171F45;
+    border: 1px solid #555D98;
+    border-radius: 10px;
+}
+
+.commandes button.active {
+    background: #5521C9;
+    border-color: #A66AFF;
+}
+
+/* CANVAS */
+
+.zone-resultat {
+    width: 100%;
+    background: #080D24;
+    border: 1px solid #515B91;
+    border-radius: 15px;
+    padding: 15px;
+    overflow: auto;
+}
+
+#canvasResultat {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.reglage {
+    margin-top: 20px;
+    display: none;
+}
+
+.reglage label {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.reglage input {
+    width: 100%;
+    accent-color: #9145FF;
+}
+
+/* STATISTIQUES */
+
+.statistiques {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.stat {
+    padding: 20px;
+    background: #111936;
+    border: 1px solid #454B83;
+    border-radius: 13px;
+}
+
+.stat h3 {
+    color: #B5BCE2;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.stat p {
+    font-size: 25px;
+    font-weight: bold;
+    color: #B36AFF;
+}
+
+.avertissement {
+    margin-top: 20px;
+    padding: 15px;
+    background: #191936;
+    border-left: 3px solid #A34CFF;
+    color: #D2D5EA;
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 25px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #AEB5D5;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+    header {
+        flex-direction: column;
+    }
+
+    .images-choix {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:500px) {
+    .intro h1 {
+        font-size: 28px;
+    }
+
+    .comparaison {
+        padding: 25px 15px;
+    }
+
+    .statistiques {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    nav button {
+        padding: 10px;
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        📡 SPHEREx HUNTER
+    </div>
+
+    <nav>
+        <button onclick="location.href='index.html'">
+            Accueil
+        </button>
+
+        <button onclick="location.href='explorer.html'">
+            Explorer
+        </button>
+
+        <button class="active">
+            Comparer
+        </button>
+
+        <button onclick="location.href='archives.html'">
+            Archives
+        </button>
+
+        <button onclick="location.href='profil.html'">
+            Mon Profil
+        </button>
+
+        <button onclick="location.href='détecter.html'">
+            Détecter
+        </button>
+    </nav>
+
+</header>
+
+<!-- INTRODUCTION -->
+
+<section class="intro">
+
+    <h1>Comparateur <span>astronomique</span></h1>
+
+    <p>
+        Comparez deux observations d'une même région du ciel
+        prises à différentes dates. Observez les changements,
+        recherchez les différences et contribuez à l'exploration
+        astronomique.
+    </p>
+
+</section>
+
+<!-- COMPARAISON -->
+
+<section class="comparaison">
+
+    <h2 class="titre-section">
+        Vos observations sélectionnées
+    </h2>
+
+    <p class="description">
+        Les images proviennent de votre sélection dans
+        la bibliothèque astronomique de la page Explorer.
+    </p>
+
+    <div class="images-choix">
+
+        <!-- IMAGE A -->
+
+        <div class="zone-image">
+
+            <h3>Observation A</h3>
+
+            <div class="apercu" id="apercuA">
+                Aucune image sélectionnée.
+            </div>
+
+            <div class="information-image">
+                <p>
+                    <strong>Image :</strong>
+                    <span id="nomA">Non sélectionnée</span>
+                </p>
+
+                <p>
+                    <strong>Date :</strong>
+                    <span id="dateA">Non renseignée</span>
+                </p>
+            </div>
+
+        </div>
+
+        <!-- IMAGE B -->
+
+        <div class="zone-image">
+
+            <h3>Observation B</h3>
+
+            <div class="apercu" id="apercuB">
+                Aucune image sélectionnée.
+            </div>
+
+            <div class="information-image">
+                <p>
+                    <strong>Image :</strong>
+                    <span id="nomB">Non sélectionnée</span>
+                </p>
+
+                <p>
+                    <strong>Date :</strong>
+                    <span id="dateB">Non renseignée</span>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BOUTON -->
+
+    <div class="action-comparer">
+
+        <button
+            class="bouton-comparer"
+            id="boutonComparer"
+            onclick="comparerImages()"
+            disabled
+        >
+            🔍 Comparer les observations
+        </button>
+
+        <p class="message" id="message">
+            Sélectionnez deux images dans Explorer.
+        </p>
+
+    </div>
+
+</section>
+
+<!-- RESULTATS -->
+
+<section class="resultats" id="resultats">
+
+    <h2>Résultat de l'analyse</h2>
+
+    <p class="description">
+        Explorez les deux images et observez les différences
+        mises en évidence.
+    </p>
+
+    <!-- MODES D'AFFICHAGE -->
+
+    <div class="commandes">
+
+        <button class="active"
+            onclick="changerMode('difference',this)">
+            Différences
+        </button>
+
+        <button onclick="changerMode('superposition',this)">
+            Superposition
+        </button>
+
+        <button onclick="changerMode('A',this)">
+            Image A
+        </button>
+
+        <button onclick="changerMode('B',this)">
+            Image B
+        </button>
+
+    </div>
+
+    <!-- RESULTAT -->
+
+    <div class="zone-resultat">
+        <canvas id="canvasResultat"></canvas>
+    </div>
+
+    <!-- TRANSPARENCE -->
+
+    <div class="reglage" id="reglage">
+
+        <label>
+            Transparence de l'image B :
+            <strong id="valeurTransparence">50 %</strong>
+        </label>
+
+        <input
+            type="range"
+            id="transparence"
+            min="0"
+            max="100"
+            value="50"
+            oninput="modifierTransparence()"
+        >
+
+    </div>
+
+    <!-- STATISTIQUES -->
+
+    <div class="statistiques">
+
+        <div class="stat">
+            <h3>Pixels présentant une différence</h3>
+            <p id="pixelsDifferents">0</p>
+        </div>
+
+        <div class="stat">
+            <h3>Proportion de pixels différents</h3>
+            <p id="pourcentage">0 %</p>
+        </div>
+
+    </div>
+
+    <div class="avertissement">
+
+        <strong>Note scientifique :</strong>
+
+        Une différence de pixels ne signifie pas nécessairement
+        qu'un objet céleste s'est déplacé. Les différences peuvent
+        provenir du bruit, de la luminosité, de l'étalonnage ou
+        de l'alignement des images. Les résultats doivent être
+        vérifiés avant tout signalement astronomique.
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+    PLANET X HUNTER |
+    Comparer les observations, explorer les différences. ✦
+</footer>
+
+<script>
+
+// VARIABLES
+
+let imgA = new Image();
+let imgB = new Image();
+
+let imageChargeeA = false;
+let imageChargeeB = false;
+
+let modeActuel = "difference";
+
+let largeur = 0;
+let hauteur = 0;
+
+let resultatPixels = null;
+
+const canvas = document.getElementById("canvasResultat");
+const contexte = canvas.getContext("2d");
+
+
+// RECUPERATION DES IMAGES DEPUIS EXPLORER
+
+function chargerSelections() {
+
+    const donnees = localStorage.getItem("planetX_comparaison");
+
+    if (!donnees) {
+        afficherMessageSelection();
+        return;
+    }
+
+    let selection;
+
+    try {
+        selection = JSON.parse(donnees);
+    } catch (erreur) {
+        document.getElementById("message").textContent =
+            "Les données des images sont invalides.";
+        return;
+    }
+
+    if (!selection.imageA || !selection.imageB) {
+        afficherMessageSelection();
+        return;
+    }
+
+    chargerObservation(selection.imageA, "A");
+    chargerObservation(selection.imageB, "B");
+
+}
+
+
+// CHARGEMENT D'UNE OBSERVATION
+
+function chargerObservation(chemin, numero) {
+
+    const image = numero === "A" ? imgA : imgB;
+
+    const apercu = document.getElementById(
+        numero === "A" ? "apercuA" : "apercuB"
+    );
+
+    image.onload = function() {
+
+        const miniature = document.createElement("img");
+
+        miniature.src = image.src;
+        miniature.alt = "Observation " + numero;
+
+        apercu.innerHTML = "";
+        apercu.appendChild(miniature);
+
+        if (numero === "A") {
+            imageChargeeA = true;
+        } else {
+            imageChargeeB = true;
+        }
+
+        verifierImages();
+
+    };
+
+    image.onerror = function() {
+
+        apercu.textContent =
+            "Impossible de charger cette observation.";
+
+        document.getElementById("message").textContent =
+            "Vérifiez que les images existent dans l'application.";
+
+    };
+console.log("Image reçue :", chemin);
+    image.src = chemin;
+
+}
+
+
+// INFORMATIONS DES OBSERVATIONS
+
+function afficherInformations() {
+
+    const donnees = JSON.parse(
+        localStorage.getItem("planetX_comparaison")
+    );
+
+    document.getElementById("nomA").textContent =
+        donnees.nomA || donnees.imageA.split("/").pop();
+
+    document.getElementById("nomB").textContent =
+        donnees.nomB || donnees.imageB.split("/").pop();
+
+    document.getElementById("dateA").textContent =
+        donnees.dateA || "Non renseignée";
+
+    document.getElementById("dateB").textContent =
+        donnees.dateB || "Non renseignée";
+
+}
+
+
+// MESSAGE DE SELECTION
+
+function afficherMessageSelection() {
+
+    document.getElementById("message").textContent =
+        "Rendez-vous dans Explorer et sélectionnez deux observations.";
+
+}
+
+
+// VERIFICATION
+
+function verifierImages() {
+
+    const bouton = document.getElementById("boutonComparer");
+
+    if (imageChargeeA && imageChargeeB) {
+
+        bouton.disabled = false;
+
+        document.getElementById("message").textContent =
+            "Les deux observations sont prêtes à être comparées.";
+
+        afficherInformations();
+
+    } else {
+
+        bouton.disabled = true;
+
+    }
+
+}
+
+
+// LANCER LA COMPARAISON
+
+function comparerImages() {
+
+    if (!imageChargeeA || !imageChargeeB) {
+        return;
+    }
+
+    // Créer une dimension commune pour les deux images
+    largeur = Math.max(
+        imgA.naturalWidth,
+        imgB.naturalWidth
+    );
+
+    hauteur = Math.max(
+        imgA.naturalHeight,
+        imgB.naturalHeight
+    );
+
+    canvas.width = largeur;
+    canvas.height = hauteur;
+
+    analyserPixels();
+
+    document.getElementById("resultats").style.display = "block";
+
+    modeActuel = "difference";
+
+    document.querySelectorAll(".commandes button").forEach(b => {
+        b.classList.remove("active");
+    });
+
+    document.querySelector(".commandes button").classList.add("active");
+
+    document.getElementById("reglage").style.display = "none";
+
+    afficherResultat();
+
+    window.scrollTo({
+        top: document.getElementById("resultats").offsetTop,
+        behavior: "smooth"
+    });
+
+}
+
+
+// ANALYSE DES PIXELS
+
+function analyserPixels() {
+
+    const temporaireA = document.createElement("canvas");
+    const temporaireB = document.createElement("canvas");
+
+    temporaireA.width = largeur;
+    temporaireA.height = hauteur;
+
+    temporaireB.width = largeur;
+    temporaireB.height = hauteur;
+
+    const ctxA = temporaireA.getContext("2d");
+    const ctxB = temporaireB.getContext("2d");
+
+    ctxA.drawImage(
+    imgA,
+    0, 0, largeur, hauteur
+);
+
+ctxB.drawImage(
+    imgB,
+    0, 0, largeur, hauteur
+);
+
+    const donneesA = ctxA.getImageData(
+        0, 0, largeur, hauteur
+    );
+
+    const donneesB = ctxB.getImageData(
+        0, 0, largeur, hauteur
+    );
+
+    resultatPixels = contexte.createImageData(
+        largeur, hauteur
+    );
+
+    let differences = 0;
+
+    const seuil = 35;
+
+    for (let i = 0; i < donneesA.data.length; i += 4) {
+
+        const rouge = Math.abs(
+            donneesA.data[i] - donneesB.data[i]
+        );
+
+        const vert = Math.abs(
+            donneesA.data[i + 1] - donneesB.data[i + 1]
+        );
+
+        const bleu = Math.abs(
+            donneesA.data[i + 2] - donneesB.data[i + 2]
+        );
+
+        const difference = (rouge + vert + bleu) / 3;
+
+        if (difference > seuil) {
+
+            differences++;
+
+            resultatPixels.data[i] = 255;
+            resultatPixels.data[i + 1] = 65;
+            resultatPixels.data[i + 2] = 220;
+            resultatPixels.data[i + 3] = 255;
+
+        } else {
+
+            resultatPixels.data[i] = 0;
+            resultatPixels.data[i + 1] = 0;
+            resultatPixels.data[i + 2] = 0;
+            resultatPixels.data[i + 3] = 255;
+
+        }
+
+    }
+
+    const total = largeur * hauteur;
+
+    const proportion = (differences / total) * 100;
+
+    document.getElementById("pixelsDifferents").textContent =
+        differences.toLocaleString("fr-FR");
+
+    document.getElementById("pourcentage").textContent =
+        proportion.toFixed(2) + " %";
+
+}
+
+
+// AFFICHER LES RESULTATS
+
+function afficherResultat() {
+
+    contexte.clearRect(0, 0, largeur, hauteur);
+
+    if (modeActuel === "A") {
+
+        contexte.drawImage(imgA, 0, 0);
+
+    }
+
+    else if (modeActuel === "B") {
+
+        contexte.drawImage(imgB, 0, 0);
+
+    }
+
+    else if (modeActuel === "difference") {
+
+        contexte.putImageData(resultatPixels, 0, 0);
+
+    }
+
+    else if (modeActuel === "superposition") {
+
+        contexte.drawImage(imgA, 0, 0);
+
+        const transparence =
+            document.getElementById("transparence").value / 100;
+
+        contexte.globalAlpha = transparence;
+
+        contexte.drawImage(imgB, 0, 0);
+
+        contexte.globalAlpha = 1;
+
+    }
+
+}
+
+
+// CHANGER DE MODE
+
+function changerMode(mode, bouton) {
+
+    modeActuel = mode;
+
+    document.querySelectorAll(".commandes button").forEach(b => {
+        b.classList.remove("active");
+    });
+
+    bouton.classList.add("active");
+
+    document.getElementById("reglage").style.display =
+        mode === "superposition" ? "block" : "none";
+
+    afficherResultat();
+
+}
+
+
+// TRANSPARENCE
+
+function modifierTransparence() {
+
+    const valeur = document.getElementById("transparence").value;
+
+    document.getElementById("valeurTransparence").textContent =
+        valeur + " %";
+
+    afficherResultat();
+
+}
+
+
+// DEMARRAGE
+
+chargerSelections();
+
+</script>
+
+</body>
+</html>

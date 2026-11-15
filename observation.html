@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Observation | SPHEREx HUNTER</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #05091F;
+    color: white;
+    padding-bottom: 40px;
+}
+
+header {
+    background: #101A38;
+    padding: 22px 20px;
+    border-bottom: 1px solid #303D68;
+}
+
+header h1 {
+    font-size: 23px;
+    color: #FFFFFF;
+}
+
+header p {
+    color: #B8C5DF;
+    margin-top: 8px;
+}
+
+.conteneur {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 0 18px;
+}
+
+.image-observation {
+    background: radial-gradient(circle, #49327C, #101A38 70%);
+    border: 1px solid #39466F;
+    border-radius: 18px;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 85px;
+    margin-bottom: 25px;
+}
+
+.badge {
+    display: inline-block;
+    background: #38206D;
+    color: #D8B8FF;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 27px;
+    margin-bottom: 15px;
+}
+
+.description {
+    color: #B8C5DF;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.carte-info {
+    background: #101A38;
+    border: 1px solid #303D68;
+    border-radius: 15px;
+    padding: 22px;
+    margin-bottom: 20px;
+}
+
+.carte-info h3 {
+    margin-bottom: 15px;
+    color: #C8A5FF;
+}
+
+.carte-info p {
+    color: #C5CEE2;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.actions a {
+    text-decoration: none;
+    background: linear-gradient(90deg, #6715FF, #1455FF);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.actions a.retour {
+    background: #202D50;
+}
+
+footer {
+    text-align: center;
+    color: #8291B5;
+    font-size: 13px;
+    margin-top: 35px;
+}
+.image-observation img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 15px;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>✦ SPHEREx HUNTER</h1>
+    <p>Explorer l'univers et ses objets célestes</p>
+</header>
+
+<main class="conteneur">
+
+      <div class="image-observation">
+    <img id="image-principale"
+         src="../SPHEREx/SPHEREx-4.jpg"
+         alt="Observation astronomique">
+</div>
+
+    <span class="badge">OBSERVATION DE DÉMONSTRATION</span>
+
+    <h2 id="titre">Observation astronomique</h2>
+
+    <p class="description" id="description">
+        Découvrez les caractéristiques de cet objet céleste.
+    </p>
+
+    <section class="carte-info">
+        <h3>Informations générales</h3>
+        <p><strong>Catégorie :</strong> <span id="categorie"></span></p>
+        <p><strong>Mission :</strong> SPHEREx</p>
+        <p><strong>Type de contenu :</strong> Exemple pédagogique</p>
+    </section>
+
+    <section class="carte-info">
+        <h3>À propos de cet objet</h3>
+        <p id="details"></p>
+    </section>
+
+    <section class="carte-info">
+        <h3>Pourquoi l'observer ?</h3>
+        <p id="interet"></p>
+    </section>
+
+    <div class="actions">
+        <a href="comparer.html">Comparer des images →</a>
+        <a href="explorer.html" class="retour">← Retour à Explorer</a>
+    </div>
+
+</main>
+
+<footer>
+    PLANET X HUNTER — Exploration astronomique
+</footer>
+
+<script>
+
+const observations = {
+
+    etoile: {
+        titre: "Champ d'étoiles",
+        categorie: "Étoiles",
+        image: "../SPHEREx/spherex-4.jpg",
+        description: "Les étoiles sont des objets célestes qui produisent leur propre lumière et leur énergie.",
+        details: "Une étoile est principalement constituée de gaz très chaud. Notre Soleil est une étoile.",
+        interet: "L'étude des étoiles permet de mieux comprendre leur formation, leur évolution et leur environnement."
+    },
+
+    galaxie: {
+        titre: "Région galactique",
+        categorie: "Galaxies",
+        image: "../SPHEREx/spherex-2.jpg",
+        description: "Les galaxies sont de vastes ensembles d'étoiles, de gaz, de poussières et de matière noire.",
+        details: "Elles peuvent contenir des millions, des milliards ou même davantage d'étoiles.",
+        interet: "Observer les galaxies aide les scientifiques à comprendre la structure et l'évolution de l'Univers."
+    },
+
+    comete: {
+        titre: "Objet en mouvement",
+        categorie: "Comètes",
+        image: "",
+        description: "Les comètes sont des petits corps célestes constitués notamment de glace, de poussières et de roches.",
+        details: "Lorsqu'une comète s'approche du Soleil, elle peut développer une chevelure et une queue.",
+        interet: "Leur étude apporte des informations sur les matériaux présents dans le jeune Système solaire."
+    },
+
+    asteroide: {
+        titre: "Corps rocheux",
+        categorie: "Astéroïdes",
+        image: "",
+        description: "Les astéroïdes sont des corps rocheux ou métalliques qui orbitent autour du Soleil.",
+        details: "La plupart se trouvent dans la ceinture principale située entre Mars et Jupiter.",
+        interet: "Les observer permet de mieux connaître les petits corps du Système solaire."
+    }
+
+};
+
+const parametres = new URLSearchParams(window.location.search);
+const type = parametres.get("type") || "etoile";
+
+const objet = observations[type];
+
+if (objet) {
+
+    document.getElementById("titre").textContent = objet.titre;
+    document.getElementById("categorie").textContent = objet.categorie;
+
+    document.getElementById("image-principale").src = objet.image;
+
+    document.getElementById("description").textContent = objet.description;
+    document.getElementById("details").textContent = objet.details;
+    document.getElementById("interet").textContent = objet.interet;
+
+} else {
+
+    document.getElementById("titre").textContent = "Observation introuvable";
+    document.getElementById("categorie").textContent = "Non définie";
+    document.getElementById("description").textContent = "Cette catégorie n'existe pas encore.";
+    document.getElementById("details").textContent = "Retournez à la page Explorer pour choisir une catégorie disponible.";
+    document.getElementById("interet").textContent = "Aucune information disponible.";
+
+}
+
+</script>
+
+</body>
+</html>

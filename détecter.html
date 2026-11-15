@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Détecter - PLANET X HUNTER</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #05091F;
+    color: white;
+    padding-bottom: 30px;
+}
+
+/* HEADER */
+
+header {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    background: #030615;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    gap: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.logo-icon {
+    font-size: 45px;
+}
+
+.logo h1 {
+    font-size: 25px;
+}
+
+.logo span {
+    color: #8545FF;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+button {
+    cursor: pointer;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+nav button {
+    padding: 13px;
+    background: transparent;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+nav button.active {
+    background: linear-gradient(90deg,#5515FF,#174BFF);
+    box-shadow: 0 0 12px #5515FF;
+}
+
+/* TITRE */
+
+.introduction {
+    text-align: center;
+    padding: 45px 20px 30px;
+}
+
+.introduction h2 {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.introduction h2 span {
+    color: #A64DFF;
+}
+
+.introduction p {
+    color: #C9CBEA;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* STATISTIQUES */
+
+.statistiques {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    padding: 15px 3%;
+}
+
+.statistique {
+    background: linear-gradient(120deg,#15183A,#090E28);
+    border: 1px solid #7043D8;
+    border-radius: 18px;
+    padding: 22px;
+    text-align: center;
+}
+
+.statistique h3 {
+    font-size: 30px;
+    color: #A64DFF;
+    margin-bottom: 8px;
+}
+
+.statistique p {
+    color: #C9CBEA;
+}
+
+/* ZONE DES RESULTATS */
+
+.zone-detection {
+    margin: 30px 3%;
+    padding: 25px;
+    background: linear-gradient(120deg,#11152F,#090D25);
+    border: 1px solid #7043D8;
+    border-radius: 20px;
+}
+
+.zone-detection h2 {
+    margin-bottom: 12px;
+}
+
+.description {
+    color: #C9CBEA;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.resultat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 15px;
+    background: #171C3B;
+    border: 1px solid #353D6A;
+    border-radius: 15px;
+}
+
+.resultat h3 {
+    color: #56CFFF;
+    margin-bottom: 8px;
+}
+
+.resultat p {
+    color: #C9CBEA;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.etiquette {
+    background: rgba(255,180,50,0.15);
+    color: #FFD45C;
+    padding: 9px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+/* SIGNALER */
+
+.signalement {
+    margin: 30px 3%;
+    padding: 25px;
+    background: linear-gradient(135deg,#17103F,#080D26);
+    border: 1px solid #8050E8;
+    border-radius: 20px;
+}
+
+.signalement h2 {
+    margin-bottom: 12px;
+}
+
+.signalement p {
+    color: #C9CBEA;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #555B91;
+    background: #090E28;
+    color: white;
+    font-size: 15px;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.bouton {
+    padding: 14px 23px;
+    background: linear-gradient(90deg,#5515FF,#A020F0);
+    border-radius: 25px;
+    font-size: 15px;
+}
+
+.bouton:hover {
+    box-shadow: 0 0 15px #5515FF;
+}
+
+/* SIGNALMENTS ENREGISTRES */
+
+.liste-signalements {
+    margin: 30px 3%;
+    padding: 25px;
+    background: #10152F;
+    border: 1px solid #168DFF;
+    border-radius: 20px;
+}
+
+.liste-signalements h2 {
+    margin-bottom: 15px;
+}
+
+.signalement-enregistre {
+    background: #171C3B;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+.vide {
+    color: #AEB4D4;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 40px;
+    padding: 22px;
+    text-align: center;
+    background: #030615;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #C9CBEA;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px) {
+    header {
+        flex-direction: column;
+    }
+
+    .statistiques {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:600px) {
+    .introduction h2 {
+        font-size: 27px;
+    }
+
+    .resultat {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    nav button {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        <div class="logo-icon">📡</div>
+        <h1>SPHEREx HUNTER</h1>
+    </div>
+
+    <nav>
+        <button onclick="location.href='index.html'"> Accueil</button>
+        <button onclick="location.href='explorer.html'"> Explorer</button>
+        <button onclick="location.href='comparer.html'"> Comparer</button>
+        <button onclick="location.href='archives.html'"> Archives</button>
+        <button onclick="location.href='profil.html'"> Mon Profil</button>
+        <button class="active" onclick="location.href='détecter.html'">
+    Détecter
+</button>
+    </nav>
+
+</header>
+
+
+<!-- INTRODUCTION -->
+
+<section class="introduction">
+
+    <h2>🎯 Détection des <span>anomalies</span></h2>
+
+    <p>
+        Examinez les différences entre les observations
+        et signalez les changements qui méritent
+        une attention particulière.
+    </p>
+
+</section>
+
+
+<!-- STATISTIQUES -->
+
+<section class="statistiques">
+
+    <div class="statistique">
+        <h3 id="nombre-analyses">0</h3>
+        <p>Analyses enregistrées</p>
+    </div>
+
+    <div class="statistique">
+        <h3 id="nombre-signalements">0</h3>
+        <p>Signalements</p>
+    </div>
+
+    <div class="statistique">
+        <h3 id="nombre-a-verifier">0</h3>
+        <p>Observations à vérifier</p>
+    </div>
+
+</section>
+
+
+<!-- RESULTATS -->
+
+<section class="zone-detection">
+
+    <h2>🔎 Observations à examiner</h2>
+
+    <p class="description">
+        Voici les observations enregistrées dans les archives.
+        Une différence visuelle ne confirme pas nécessairement
+        la présence d'un nouvel objet céleste.
+    </p>
+
+    <div id="resultats">
+        <p class="vide">Chargement des observations...</p>
+    </div>
+
+</section>
+
+
+<!-- FORMULAIRE DE SIGNALEMENT -->
+
+<section class="signalement">
+
+    <h2>🚩 Signaler une anomalie possible</h2>
+
+    <p>
+        Tu as remarqué une différence intéressante ?
+        Décris-la ici pour conserver ton observation.
+    </p>
+
+    <form id="formulaire">
+
+        <input
+            type="text"
+            id="titre"
+            placeholder="Titre de l'observation"
+            required
+        >
+
+        <select id="type" required>
+            <option value="">Type d'observation</option>
+            <option value="Objet lumineux">Objet lumineux</option>
+            <option value="Changement de position">Changement de position</option>
+            <option value="Différence visuelle">Différence visuelle</option>
+            <option value="Autre">Autre</option>
+        </select>
+
+        <textarea
+            id="description"
+            placeholder="Décris ce que tu as observé..."
+            required
+        ></textarea>
+
+        <button type="submit" class="bouton">
+            Enregistrer le signalement →
+        </button>
+
+    </form>
+
+</section>
+
+
+<!-- SIGNALEMENTS -->
+
+<section class="liste-signalements">
+
+    <h2>📁 Mes signalements</h2>
+
+    <div id="mes-signalements">
+        <p class="vide">Aucun signalement pour le moment.</p>
+    </div>
+
+</section>
+
+
+<footer>
+    PLANET X HUNTER ✦ Une aventure scientifique à portée de tous
+</footer>
+
+
+<script>
+
+// RECUPERER LES ARCHIVES
+
+const archives = JSON.parse(
+    localStorage.getItem("planetXArchives") || "[]"
+);
+
+const signalements = JSON.parse(
+    localStorage.getItem("planetXSignalements") || "[]"
+);
+
+
+// STATISTIQUES
+
+document.getElementById("nombre-analyses").textContent =
+    archives.length;
+
+document.getElementById("nombre-signalements").textContent =
+    signalements.length;
+
+document.getElementById("nombre-a-verifier").textContent =
+    archives.length;
+
+
+// AFFICHER LES OBSERVATIONS
+
+const resultat = document.getElementById("resultats");
+
+if (archives.length === 0) {
+
+    resultat.innerHTML =
+        '<p class="vide">Aucune analyse disponible. Commence par comparer deux images.</p>';
+
+} else {
+
+    resultat.innerHTML = "";
+
+    archives.forEach((archive, index) => {
+
+        const carte = document.createElement("div");
+        carte.className = "resultat";
+
+        const contenu = document.createElement("div");
+
+        const titre = document.createElement("h3");
+        titre.textContent = archive.titre || "Observation " + (index + 1);
+
+        const details = document.createElement("p");
+        details.textContent =
+            "Date : " + (archive.date || "Non renseignée") +
+            " | Pixels différents : " + (archive.pixels ?? 0) +
+            " | Différence : " + (archive.pourcentage ?? 0) + " %";
+
+        contenu.appendChild(titre);
+        contenu.appendChild(details);
+
+        const etiquette = document.createElement("span");
+        etiquette.className = "etiquette";
+        etiquette.textContent = "À vérifier";
+
+        carte.appendChild(contenu);
+        carte.appendChild(etiquette);
+
+        resultat.appendChild(carte);
+
+    });
+
+}
+
+
+// ENREGISTRER UN SIGNALEMENT
+
+document.getElementById("formulaire").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const nouveauSignalement = {
+        id: Date.now(),
+        titre: document.getElementById("titre").value,
+        type: document.getElementById("type").value,
+        description: document.getElementById("description").value,
+        date: new Date().toLocaleString("fr-FR")
+    };
+
+    signalements.push(nouveauSignalement);
+
+    localStorage.setItem(
+        "planetXSignalements",
+        JSON.stringify(signalements)
+    );
+
+    afficherSignalements();
+
+    document.getElementById("nombre-signalements").textContent =
+        signalements.length;
+
+    document.getElementById("formulaire").reset();
+
+});
+
+
+// AFFICHER LES SIGNALEMENTS
+
+function afficherSignalements() {
+
+    const zone = document.getElementById("mes-signalements");
+
+    zone.innerHTML = "";
+
+    if (signalements.length === 0) {
+        zone.innerHTML =
+            '<p class="vide">Aucun signalement pour le moment.</p>';
+        return;
+    }
+
+    signalements.forEach(signalement => {
+
+        const carte = document.createElement("div");
+        carte.className = "signalement-enregistre";
+
+        const titre = document.createElement("h3");
+        titre.textContent = "🚩 " + signalement.titre;
+
+        const type = document.createElement("p");
+        type.textContent = "Type : " + signalement.type;
+
+        const description = document.createElement("p");
+        description.textContent = signalement.description;
+
+        const date = document.createElement("small");
+        date.textContent = signalement.date;
+
+        carte.appendChild(titre);
+        carte.appendChild(type);
+        carte.appendChild(description);
+        carte.appendChild(date);
+
+        zone.appendChild(carte);
+
+    });
+
+}
+
+afficherSignalements();
+
+</script>
+
+</body>
+</html>

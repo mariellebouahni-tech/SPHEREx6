@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon Profil | PLANET X HUNTER</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #05091F;
+    color: white;
+}
+
+/* HEADER */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    gap: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: #8545FF;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+nav button {
+    padding: 13px 15px;
+    background: transparent;
+    border: none;
+    color: white;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+nav button.active {
+    background: linear-gradient(90deg,#5515FF,#174BFF);
+    box-shadow: 0 0 15px #5515FF;
+}
+
+/* INTRODUCTION */
+
+.intro {
+    padding: 40px 5%;
+    background: linear-gradient(120deg,#15113D,#05091F);
+    border-bottom: 1px solid #252A58;
+}
+
+.intro h1 {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.intro h1 span {
+    color: #A34CFF;
+}
+
+.intro p {
+    color: #C8CCE8;
+    line-height: 1.6;
+}
+
+/* CONTENU */
+
+.contenu {
+    max-width: 1100px;
+    margin: auto;
+    padding: 35px 4%;
+}
+
+/* CARTE PROFIL */
+
+.profil {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 25px;
+    background: #111936;
+    border: 1px solid #454B83;
+    border-radius: 18px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#5515FF,#A020F0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.informations {
+    flex: 1;
+}
+
+.informations h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.informations p {
+    color: #B9C1E2;
+    line-height: 1.7;
+}
+
+.bouton {
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(90deg,#5515FF,#174BFF);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* FORMULAIRE */
+
+.edition {
+    display: none;
+    margin-top: 20px;
+    padding: 22px;
+    background: #111936;
+    border: 1px solid #454B83;
+    border-radius: 15px;
+}
+
+.edition h3 {
+    margin-bottom: 15px;
+}
+
+.edition input,
+.edition textarea {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 12px;
+    border: 1px solid #454B83;
+    background: #080D24;
+    color: white;
+    border-radius: 9px;
+    font-family: Arial;
+}
+
+.edition textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* STATISTIQUES */
+
+.titre-section {
+    font-size: 23px;
+    margin: 35px 0 20px;
+}
+
+.statistiques {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
+.stat {
+    padding: 22px;
+    background: #111936;
+    border: 1px solid #454B83;
+    border-radius: 15px;
+}
+
+.stat h3 {
+    font-size: 14px;
+    color: #B9C1E2;
+    margin-bottom: 15px;
+}
+
+.stat p {
+    font-size: 29px;
+    font-weight: bold;
+    color: #A34CFF;
+}
+
+/* ACTIVITES */
+
+.activites {
+    background: #111936;
+    border: 1px solid #454B83;
+    border-radius: 15px;
+    padding: 22px;
+}
+
+.activite {
+    padding: 17px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.activite:last-child {
+    border-bottom: none;
+}
+
+.activite p {
+    color: #D5D9F0;
+}
+
+.activite span {
+    color: #A34CFF;
+    font-size: 13px;
+}
+
+/* PIED DE PAGE */
+
+footer {
+    padding: 25px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #AEB5D5;
+    font-size: 13px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px) {
+
+    header {
+        flex-direction: column;
+    }
+
+    .statistiques {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width:550px) {
+
+    .profil {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .informations h2 {
+        font-size: 22px;
+    }
+
+    .intro h1 {
+        font-size: 28px;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    nav button {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        📡SPHEREx HUNTER
+    </div>
+
+    <nav>
+
+        <button onclick="location.href='index.html'">
+            Accueil
+        </button>
+
+        <button onclick="location.href='explorer.html'">
+            Explorer
+        </button>
+
+        <button onclick="location.href='comparer.html'">
+            Comparer
+        </button>
+
+        <button onclick="location.href='archives.html'">
+            Archives
+        </button>
+
+        <button class="active">
+            Mon Profil
+        </button>
+        
+        <button onclick="location.href='détecter.html'">
+            Détecter
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- INTRODUCTION -->
+
+<section class="intro">
+
+    <h1>Mon <span>profil</span></h1>
+
+    <p>
+        Retrouve tes informations, suis tes découvertes
+        et consulte ton activité sur PLANET X HUNTER.
+    </p>
+
+</section>
+
+
+<main class="contenu">
+
+    <!-- PROFIL -->
+
+    <section class="profil">
+
+        <div class="avatar" id="avatar">
+            U
+        </div>
+
+        <div class="informations">
+
+            <h2 id="nomAffiche">Utilisateur</h2>
+
+            <p id="descriptionAffiche">
+                Explorateur de l'univers 🌌
+            </p>
+
+            <p id="dateInscription">
+                Membre depuis aujourd'hui
+            </p>
+
+        </div>
+
+        <button class="bouton" onclick="ouvrirEdition()">
+            Modifier le profil
+        </button>
+
+    </section>
+
+
+    <!-- MODIFICATION -->
+
+    <section class="edition" id="edition">
+
+        <h3>Modifier mes informations</h3>
+
+        <input
+            type="text"
+            id="nom"
+            placeholder="Ton nom"
+            maxlength="35"
+        >
+
+        <textarea
+            id="description"
+            placeholder="Présente-toi..."
+            maxlength="180"
+        ></textarea>
+
+        <button class="bouton" onclick="enregistrerProfil()">
+            Enregistrer
+        </button>
+
+    </section>
+
+
+    <!-- STATISTIQUES -->
+
+    <h2 class="titre-section">
+        Mon activité astronomique
+    </h2>
+
+    <section class="statistiques">
+
+        <div class="stat">
+
+            <h3>Comparaisons réalisées</h3>
+
+            <p id="totalAnalyses">0</p>
+
+        </div>
+
+        <div class="stat">
+
+            <h3>Observations examinées</h3>
+
+            <p id="totalObservations">0</p>
+
+        </div>
+
+        <div class="stat">
+
+            <h3>Analyses archivées</h3>
+
+            <p id="totalArchives">0</p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACTIVITES -->
+
+    <h2 class="titre-section">
+        Mes dernières activités
+    </h2>
+
+    <section class="activites" id="activites">
+
+        <div class="activite">
+            <p>Bienvenue sur PLANET X HUNTER</p>
+            <span>Accueil</span>
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    PLANET X HUNTER |
+    Explorez. Comparez. Découvrez. ✦
+
+</footer>
+
+
+<script>
+
+// RECUPERER LE PROFIL
+
+function recupererProfil() {
+
+    return JSON.parse(
+        localStorage.getItem("planetXProfil") ||
+        '{"nom":"Utilisateur","description":"Explorateur de l\\u0027univers 🌌","date":" "}'
+    );
+
+}
+
+
+// AFFICHER LE PROFIL
+
+function afficherProfil() {
+
+    const profil = recupererProfil();
+
+    document.getElementById("nomAffiche").textContent =
+        profil.nom;
+
+    document.getElementById("descriptionAffiche").textContent =
+        profil.description;
+
+    document.getElementById("avatar").textContent =
+        profil.nom.charAt(0).toUpperCase() || "U";
+
+    document.getElementById("dateInscription").textContent =
+        profil.date ? "Membre depuis le " + profil.date :
+        "Membre depuis aujourd'hui";
+
+}
+
+
+// OUVRIR LA MODIFICATION
+
+function ouvrirEdition() {
+
+    const profil = recupererProfil();
+
+    document.getElementById("nom").value =
+        profil.nom;
+
+    document.getElementById("description").value =
+        profil.description;
+
+    document.getElementById("edition").style.display = "block";
+
+}
+
+
+// ENREGISTRER LE PROFIL
+
+function enregistrerProfil() {
+
+    const nom = document.getElementById("nom").value.trim();
+
+    const description =
+        document.getElementById("description").value.trim();
+
+    if (!nom) {
+        alert("Veuillez entrer un nom.");
+        return;
+    }
+
+    const ancienProfil = recupererProfil();
+
+    const profil = {
+
+        nom: nom,
+
+        description: description || "Explorateur de l'univers 🌌",
+
+        date: ancienProfil.date ||
+            new Date().toLocaleDateString("fr-FR")
+
+    };
+
+    localStorage.setItem(
+        "planetXProfil",
+        JSON.stringify(profil)
+    );
+
+    document.getElementById("edition").style.display = "none";
+
+    afficherProfil();
+
+}
+
+
+// STATISTIQUES
+
+function afficherStatistiques() {
+
+    const archives = JSON.parse(
+        localStorage.getItem("planetXArchives") || "[]"
+    );
+
+    document.getElementById("totalAnalyses").textContent =
+        archives.length;
+
+    document.getElementById("totalArchives").textContent =
+        archives.length;
+
+    document.getElementById("totalObservations").textContent =
+        archives.length * 2;
+
+}
+
+
+// ACTIVITES
+
+function afficherActivites() {
+
+    const archives = JSON.parse(
+        localStorage.getItem("planetXArchives") || "[]"
+    );
+
+    const zone = document.getElementById("activites");
+
+    if (archives.length === 0) return;
+
+    zone.innerHTML = "";
+
+    archives.slice().reverse().slice(0,5).forEach(archive => {
+
+        const ligne = document.createElement("div");
+
+        ligne.className = "activite";
+
+        const texte = document.createElement("p");
+
+        texte.textContent =
+            "Comparaison : " +
+            (archive.titre || "Analyse astronomique");
+
+        const date = document.createElement("span");
+
+        date.textContent = archive.date || "";
+
+        ligne.appendChild(texte);
+        ligne.appendChild(date);
+
+        zone.appendChild(ligne);
+
+    });
+
+}
+
+
+// INITIALISATION
+
+afficherProfil();
+
+afficherStatistiques();
+
+afficherActivites();
+
+</script>
+
+</body>
+</html>
